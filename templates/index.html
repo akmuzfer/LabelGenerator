@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Generate a PDF for printing labels.">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+
+    <title>Make some labels</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: #eee;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-top: 45px;
+        }
+		div {
+			padding: 10px;
+		}
+		.gray {
+			color: #555
+		}
+        .container {
+            text-align: center;
+        }
+        .btn {
+			background: #b44;
+			border: #822 2px solid;
+			border-radius: 3px;
+			font-size: 16px;
+			color: #fee;
+		}
+        .footer {
+            position: absolute;
+            text-align: center;
+            left: 0; 
+            right: 0; 
+            bottom: 10px;
+        }
+        .footer p {
+            color: #cccccc;
+        }
+    
+        .footer a {
+            color: #f0c1c6;
+        }
+        @media only screen and (min-width: 768px) {
+            #logo {
+                width: 10%;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <h1 style="margin-bottom: 50px">Generate labels</h1>
+        <form action="/api/create" method="POST" enctype="multipart/form-data" style="text-align: -webkit-center;">
+			<table style="text-align: left">
+			<tr>
+				<td> Tab separated data:
+	            <td><textarea name="data" style="width: 400px; height: 100px"></textarea>
+			</tr>
+			<tr>
+				<td> Indices of columns to use on labels:
+				<td><input type="text" name="indices" value="0, 1, 2, 19"> <span class="gray">(counted from 0)</span>
+			</tr>
+			<tr>
+				<td> Shape of the paper matrix:
+				<td><input type="text" name="shape" value="7, 3"> <span class="gray">(vertical and horizontal label count)</span>
+			</tr>
+			</table>
+			<div>
+            	<input type="submit" value="Submit" class="btn" style="margin-top: 20px">
+			</div>
+		</form>
+	</div>
+	<div style="text-align: left">
+		<h2>Description:</h2>
+		<p> This program creates a PDF file for printing on a matrix of sticky labels. Input data must be in TSV format (like when copied from a spreadsheet). Indices select which columns will be used to populate each label. The fixed label format is the following:
+		<div style="border: #000 1px solid; text-align: center; width: 250px">
+			<div style="font-size: 12px">[DATA_1]</div>
+			<div style="font-size: 13px"> [DATA_2] [DATA_3]</div>
+			<div style="font-size: 12px"> [DATA_4]</div>
+		</div>
+	</div>
+	<div class=".footer">
+	</div>
+</body>
+</html>
