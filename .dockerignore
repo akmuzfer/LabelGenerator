@@ -1,0 +1,6 @@
+.*
+__pycache__/
+samples/
+Dockerfile
+CHANGELOG.md
+README.md
