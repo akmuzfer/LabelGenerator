@@ -25,7 +25,7 @@ def create():
 
     file_bytes = BytesIO(generate_labels(data, label_shape=shape))
 
-    return send_file(file_bytes, attachment_filename='output.pdf', as_attachment=True)
+    return send_file(file_bytes, attachment_filename='labels.pdf', as_attachment=True)
 
 if __name__ == '__main__':
 	app.run()
