@@ -1,6 +1,6 @@
 from io import BytesIO
 from flask import Flask, request, send_file, render_template
-from generate_labels import generate_labels
+from generate_labels import generate_labels, parse_data
 
 app = Flask(__name__)
 
@@ -17,11 +17,7 @@ def create():
     shape = request.form['shape'].split(',')
     shape = (int(shape[0].strip()), int(shape[1].strip()))
 
-    data = []
-    for l in text.split('\n'):
-        words = l.split('\t')
-        parts = [words[i].strip() for i in indices]
-        data.append(parts)
+    data = parse_data(text.split('\n'), indices)
 
     file_bytes = BytesIO(generate_labels(data, label_shape=shape))
 

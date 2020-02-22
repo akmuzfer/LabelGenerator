@@ -62,7 +62,19 @@ def generate_labels(data, label_shape=(7, 3), local=False, debug=0):
 		return doc.output('./output.pdf', dest='F').encode('latin-1')
 	else:
 		return doc.output('./output.pdf', dest='S').encode('latin-1')
-	
+
+
+def parse_data(lines, indices):
+	data = []
+	for l in lines:
+			if not l.strip():
+				data.append([])
+				continue
+			words = re.split(' *[\t,] *', l)
+			parts = [words[i].strip() for i in indices]
+			data.append(parts)
+	return data
+
 
 if __name__ == '__main__':
 	import sys
@@ -74,13 +86,7 @@ if __name__ == '__main__':
 	indices = [0,1,2,3]
 	data = []
 	with open(sys.argv[1], 'r') as f:
-		for l in f:
-			if not l.strip():
-				data.append([])
-				continue
-			words = re.split('[\t,]', l)
-			parts = [words[i].strip() for i in indices]
-			data.append(parts)
+		data = parse_data(f, indices)
 
 	generate_labels(data, local=True)
 

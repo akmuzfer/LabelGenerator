@@ -21,6 +21,9 @@
 		div {
 			padding: 10px;
 		}
+		td :last-child {
+			margin-right: 20px;
+		}
 		.gray {
 			color: #555
 		}
@@ -60,21 +63,25 @@
         <form action="/api/create" method="POST" enctype="multipart/form-data" style="text-align: -webkit-center;">
 			<table style="text-align: left">
 			<tr>
-				<td> Tab separated data:
-	            <td><textarea name="data" style="width: 400px; height: 100px"></textarea>
+				<td> Tab or comma separated data: <br> <span class="gray">(use empty lines to skip labels)</span>
+	            <td><textarea name="data" style="width: 400px; height: 100px" placeholder="Enter your data here..."></textarea>
 			</tr>
 			<tr>
-				<td> Indices of columns to use on labels:
-				<td><input type="text" name="indices" value="0, 1, 2, 19"> <span class="gray">(counted from 0)</span>
+				<td> Indices of columns to use on labels: <br> <span class="gray">(counted from 0)</span>
+				<td style="vertical-align: top"><input type="text" name="indices" value="0, 1, 2, 19">
 			</tr>
 			<tr>
-				<td> Shape of the paper matrix:
-				<td><input type="text" name="shape" value="7, 3"> <span class="gray">(vertical and horizontal label count)</span>
+				<td> Shape of the paper matrix: <br> <span class="gray">(vertical and horizontal label count)</span>
+				<td style="vertical-align: top"><input type="text" name="shape" value="7, 3">
+			</tr>
+			<tr>
+				<td />
+				<td>
+	            	<input type="submit" value="Submit" class="btn" style="margin-top: 20px">
+				</td>
 			</tr>
 			</table>
-			<div>
-            	<input type="submit" value="Submit" class="btn" style="margin-top: 20px">
-			</div>
+			
 		</form>
 	</div>
 	<div style="text-align: left">
